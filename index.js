@@ -3,10 +3,6 @@ var mysql = require('mysql');
 const config = require('./config');
 var app = express();
 
-
-
-
-
 app.get('/', (req, res) => {
   let connection = mysql.createConnection({
     host: process.env.DB_HOST,
