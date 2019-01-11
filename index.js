@@ -23,6 +23,6 @@ app.get('/', (req, res) => {
   });
 });
 
-app.listen(config.get('PORT'), '0.0.0.0', () => {
+app.listen(config.get('PORT'), () => {
   console.log('Example app listening on port 3000!');
 });
