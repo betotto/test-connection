@@ -4,19 +4,16 @@ const config = require('./config');
 var app = express();
 
 
-const options = {
-  user: config.get('MYSQL_USER'),
-  password: config.get('MYSQL_PASSWORD'),
-  database: 'gestor-siniestros'
-};
 
-if (config.get('INSTANCE_CONNECTION_NAME') && config.get('NODE_ENV') === 'production') {
-  options.socketPath = `/cloudsql/${config.get('INSTANCE_CONNECTION_NAME')}`;
-}
 
 
 app.get('/', (req, res) => {
-  var con = mysql.createConnection(options);
+  let connection = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    database: process.env.DB_DATABASE,
+    password: process.env.DB_PASS
+  });
 
   con.connect(function(err) {
     if (err) res.send(err)
