@@ -4,16 +4,22 @@ const config = require('./config');
 var app = express();
 
 app.get('/', (req, res) => {
-  let connection = mysql.createConnection({
+  const options = {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     database: process.env.DB_DATABASE,
     password: process.env.DB_PASS
-  });
+  };
 
-  con.connect(function(err) {
-    if (err) res.send(err)
-    res.send("Connected!");
+  console.log(options);
+  let connection = mysql.createConnection(options);
+
+  con.connect((err) {
+    if (err) {
+      res.send({hello: err});
+    } else {
+        res.send({hello: "Connected!"});
+    }
   });
 });
 
