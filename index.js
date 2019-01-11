@@ -7,7 +7,7 @@ var app = express();
 const options = {
   user: config.get('MYSQL_USER'),
   password: config.get('MYSQL_PASSWORD'),
-  database: 'gs-prod'
+  database: 'gestor-siniestros'
 };
 
 if (config.get('INSTANCE_CONNECTION_NAME') && config.get('NODE_ENV') === 'production') {
