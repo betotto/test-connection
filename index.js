@@ -1,13 +1,22 @@
 var express = require('express');
 var mysql = require('mysql');
+const config = require('./config');
 var app = express();
 
+
+const options = {
+  user: config.get('MYSQL_USER'),
+  password: config.get('MYSQL_PASSWORD'),
+  database: 'gs-prod'
+};
+
+if (config.get('INSTANCE_CONNECTION_NAME') && config.get('NODE_ENV') === 'production') {
+  options.socketPath = `/cloudsql/${config.get('INSTANCE_CONNECTION_NAME')}`;
+}
+
+
 app.get('/', (req, res) => {
-  var con = mysql.createConnection({
-    host: process.env.SQL_DATABASE,
-    user: process.env.SQL_USER,
-    password: process.env.SQL_PASSWORD
-  });
+  var con = mysql.createConnection(options);
 
   con.connect(function(err) {
     if (err) res.send(err)
@@ -15,6 +24,6 @@ app.get('/', (req, res) => {
   });
 });
 
-app.listen(5000, '0.0.0.0', () => {
+app.listen(config.get('PORT'), '0.0.0.0', () => {
   console.log('Example app listening on port 3000!');
 });
