@@ -1,0 +1,11 @@
+runtime: nodejs10
+
+env: flex
+
+env_variables:
+  SQL_USER: raul
+  SQL_PASSWORD: raul
+  SQL_DATABASE: gestor-siniestros:us-central1:gs-prod
+  # e.g. my-awesome-project:us-central1:my-cloud-sql-instance
+  INSTANCE_CONNECTION_NAME: gs-prod
+# [END gae_flex_mysql_env]
