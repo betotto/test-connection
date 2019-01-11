@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
   console.log(options);
   let connection = mysql.createConnection(options);
 
-  con.connect((err) {
+  con.connect((err) => {
     if (err) {
       res.send({hello: err});
     } else {
