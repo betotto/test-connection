@@ -5,10 +5,11 @@ var app = express();
 
 app.get('/', (req, res) => {
   const options = {
-    host: process.env.DB_HOST,
+    host: process.env.DB_SERVER,
+    port: process.env.DB_PORT,
     user: process.env.DB_USER,
-    database: process.env.DB_DATABASE,
-    password: process.env.DB_PASS
+    database: process.env.DB_DB,
+    password: process.env.DB_PASSWORD
   };
 
   console.log(options);
